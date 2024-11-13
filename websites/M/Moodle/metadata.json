@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.premid.app/metadata/1.11",
+	"apiVersion": 1,
+	"author": {
+		"id": "1167417152664522764",
+		"name": "kaktuswerk"
+	},
+	"service": "Moodle",
+	"description": {
+		"en": "Moodle is a Learning Platform or course management system (CMS) - a free Open Source software package designed to help educators create effective online courses based on sound pedagogical principles. You can download and use it on any computer you have handy (including webhosts), yet it can scale from a single-teacher site to a 200,000-student University. Moodle has a large and diverse user community with over 100,000 sites registered worldwide speaking over 140 languages in every country there is."
+	},
+	"url": [
+		"moodle.com",
+		"moodle.org",
+		"moodle."
+	],
+	"version": "1.0.0",
+	"logo": "https://cdn.icon-icons.com/icons2/2415/PNG/512/moodle_original_logo_icon_146420.png",
+	"thumbnail": "https://w7.pngwing.com/pngs/826/747/png-transparent-moodle-original-wordmark-logo-icon.png",
+	"color": "#eb821a",
+	"category": "other",
+	"tags": [
+		"uni",
+		"university",
+		"school",
+		"learn",
+		"teach"
+	]
+}
