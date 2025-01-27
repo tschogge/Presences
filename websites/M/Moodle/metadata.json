@@ -1,5 +1,5 @@
 {
-	"$schema": "https://schemas.premid.app/metadata/1.11",
+	"$schema": "https://schemas.premid.app/metadata/1.13",
 	"apiVersion": 1,
 	"author": {
 		"id": "1167417152664522764",
@@ -11,12 +11,11 @@
 	},
 	"url": [
 		"moodle.com",
-		"moodle.org",
-		"moodle."
+		"moodle.org"
 	],
 	"version": "1.0.0",
-	"logo": "https://cdn.icon-icons.com/icons2/2415/PNG/512/moodle_original_logo_icon_146420.png",
-	"thumbnail": "https://w7.pngwing.com/pngs/826/747/png-transparent-moodle-original-wordmark-logo-icon.png",
+	"logo": "https://imgur.com/h1yyzU2",
+	"thumbnail": "https://imgur.com/a/zegWhmv",
 	"color": "#eb821a",
 	"category": "other",
 	"tags": [
@@ -25,5 +24,6 @@
 		"school",
 		"learn",
 		"teach"
-	]
+	],
+	"regExp": "([a-z0-9-]+[.])*moodle[.]?"
 }

@@ -1,5 +1,5 @@
 const presence = new Presence({
-		clientId: "1102935778570547282",
+		clientId: "1333235846026891264",
 	}),
 	strings = presence.getStrings({
 		play: "presence.playback.playing",
@@ -8,7 +8,7 @@ const presence = new Presence({
 	browsingTimestamp = Math.floor(Date.now() / 1000);
 
 const enum Assets { // Other default assets can be found at index.d.ts
-	Logo = "",
+	Logo = "https://imgur.com/h1yyzU2",
 }
 
 presence.on("UpdateData", async () => {
@@ -17,5 +17,6 @@ presence.on("UpdateData", async () => {
 		startTimestamp: browsingTimestamp,
 	};
 
+	console.log("Is moodle");
 	presence.setActivity(presenceData);
 });
