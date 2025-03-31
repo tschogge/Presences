@@ -3,6 +3,7 @@ import { PrivacyUI } from './util/PrivacyUI.js'
 const presence = new Presence({
   clientId: '1102935778570547282',
 })
+
 async function getStrings() {
   return presence.getStrings({
     ai: 'chatgpt.ai',
@@ -21,6 +22,7 @@ async function getStrings() {
     viewingAGPT: 'chatgpt.viewingAGPT',
   })
 }
+
 const browsingTimestamp = Math.floor(Date.now() / 1000)
 
 enum ActivityAssets {
@@ -56,8 +58,9 @@ presence.on('UpdateData', async () => {
       ?.replace(/(, )|(,\n)|(,)|(\. )|(\.)/g, ' ')
       // eslint-disable-next-line regexp/no-dupe-disjunctions
       .replace(/(\d*)|(\/)|(')|(,)|( )/g, '')
-    if (text)
+    if (text) {
       wordCount += text.split(' ').slice(2, text.split(' ').length).length
+    }
   }
 
   if (document.location.hash.includes('#settings')) {
@@ -76,8 +79,7 @@ presence.on('UpdateData', async () => {
       )?.textContent
     }
     else {
-      presenceData.details = showTitle ? document.title : (showGPTName ? strings.talkingWithAI.replace('{0}', gptName ?? strings.ai) : strings.talkingWithAI.replace('{0}', strings.ai))
-      presenceData.details = showTitle && !chatPrivacy.getIsHidden() ? document.title : (showGPTName ? strings.talkingWithAI.replace('{0}', gptName!) : strings.talkingWithAI.replace('{0}', strings.ai))
+      presenceData.details = showTitle && !chatPrivacy.getIsHidden() ? document.title : (showGPTName ? strings.talkingWithAI.replace('{0}', gptName ?? strings.ai) : strings.talkingWithAI.replace('{0}', strings.ai))
     }
 
     presenceData.state = isTalking
