@@ -14,6 +14,7 @@ async function getStrings() {
     startNewConversation: 'chatgpt.startNewConversation',
     startNewConversationInTemporaryChat: 'chatgpt.startNewConversationInTemporaryChat',
     talkingWithAI: 'chatgpt.talkingWithAI',
+    talkingWithAIInSharedChat: 'chatgpt.talkingWithAIInSharedChat',
     talkingWithAIInTemporaryChat: 'chatgpt.talkingWithAIInTemporaryChat',
     thinkingOfPrompt: 'chatgpt.thinkingOfPrompt',
     viewingGPT: 'chatgpt.viewingGPT',
@@ -75,11 +76,12 @@ presence.on('UpdateData', async () => {
       )?.textContent
     }
     else {
+      presenceData.details = showTitle ? document.title : (showGPTName ? strings.talkingWithAI.replace('{0}', gptName ?? strings.ai) : strings.talkingWithAI.replace('{0}', strings.ai))
       presenceData.details = showTitle && !chatPrivacy.getIsHidden() ? document.title : (showGPTName ? strings.talkingWithAI.replace('{0}', gptName!) : strings.talkingWithAI.replace('{0}', strings.ai))
     }
 
     presenceData.state = isTalking
-      ? (showGPTName ? strings.aiResponding.replace('{0}', gptName!) : strings.aiResponding.replace('{0}', strings.ai))
+      ? (showGPTName ? strings.aiResponding.replace('{0}', gptName ?? strings.ai) : strings.aiResponding.replace('{0}', strings.ai))
       : strings.conversationStats
           .replace(
             '{0}',
@@ -104,11 +106,11 @@ presence.on('UpdateData', async () => {
         )?.textContent
       }
       else {
-        presenceData.details = showGPTName ? strings.talkingWithAI.replace('{0}', gptName!) : strings.talkingWithAI.replace('{0}', strings.ai)
+        presenceData.details = showGPTName ? strings.talkingWithAI.replace('{0}', gptName ?? strings.ai) : strings.talkingWithAI.replace('{0}', strings.ai)
       }
 
       presenceData.state = isTalking
-        ? (showGPTName ? strings.aiResponding.replace('{0}', gptName!) : strings.aiResponding.replace('{0}', strings.ai))
+        ? (showGPTName ? strings.aiResponding.replace('{0}', gptName ?? strings.ai) : strings.aiResponding.replace('{0}', strings.ai))
         : strings.conversationStats
             .replace(
               '{0}',
@@ -135,9 +137,9 @@ presence.on('UpdateData', async () => {
       presenceData.state = strings.thinkingOfPrompt
     }
     else {
-      presenceData.details = (showGPTName ? strings.talkingWithAIInTemporaryChat.replace('{0}', gptName!) : strings.talkingWithAIInTemporaryChat.replace('{0}', strings.ai))
+      presenceData.details = (showGPTName ? strings.talkingWithAIInTemporaryChat.replace('{0}', gptName ?? strings.ai) : strings.talkingWithAIInTemporaryChat.replace('{0}', strings.ai))
       presenceData.state = isTalking
-        ? (showGPTName ? strings.aiResponding.replace('{0}', gptName!) : strings.aiResponding.replace('{0}', strings.ai))
+        ? (showGPTName ? strings.aiResponding.replace('{0}', gptName ?? strings.ai) : strings.aiResponding.replace('{0}', strings.ai))
         : strings.conversationStats
             .replace(
               '{0}',
@@ -149,6 +151,18 @@ presence.on('UpdateData', async () => {
             .replace('{1}', `${wordCount}`)
       presenceData.smallImageKey = isTalking ? ActivityAssets.Talking : null
     }
+  }
+  else if (pathname.split('/')[1] === 'share') {
+    presenceData.details = showTitle ? document.title : (showGPTName ? strings.talkingWithAIInSharedChat.replace('{0}', gptName ?? strings.ai) : strings.talkingWithAIInSharedChat.replace('{0}', strings.ai))
+    presenceData.state = strings.conversationStats
+      .replace(
+        '{0}',
+        `${Number(
+          document.querySelectorAll('[data-message-author-role="user"]')
+            .length,
+        )}`,
+      )
+      .replace('{1}', `${wordCount}`)
   }
   else {
     presenceData.details = strings.startNewConversation
