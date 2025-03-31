@@ -39,10 +39,12 @@ export class PrivacyUI {
     if (this.isHidden) {
       svgEnabled.style.display = 'inline-block'
       svgDisabled.style.display = 'none'
+      this.privacyButton.title = 'Chat is hidden'
     }
     else {
       svgEnabled.style.display = 'none'
       svgDisabled.style.display = 'inline-block'
+      this.privacyButton.title = 'Chat is public'
     }
   }
 
