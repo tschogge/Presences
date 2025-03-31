@@ -4,7 +4,7 @@ export class PrivacyUI {
   private privacyButton!: HTMLElement
 
   constructor(chatId: string) {
-    this.isHidden = Boolean(localStorage.getItem(`prvc${chatId}`))
+    this.isHidden = localStorage.getItem(`prvc${chatId}`) === 'true'
     this.chatId = chatId
     this.setPublic = this.setPublic.bind(this)
     this.setPrivate = this.setPrivate.bind(this)
@@ -28,7 +28,7 @@ export class PrivacyUI {
 
     // Add button to chat bar
     div.appendChild(this.privacyButton)
-    document.querySelector('#composer-background div[class="flex gap-x-1.5 text-token-text-primary"]')?.appendChild(div)
+    document.querySelector('form[data-type="unified-composer"] div.flex.items-center.gap-2')?.appendChild(div)
     this.showSvgs()
     this.privacyButton.addEventListener('click', this.togglePrivacy)
   }
@@ -48,22 +48,20 @@ export class PrivacyUI {
 
   setPublic() {
     this.isHidden = false
-    localStorage.setItem(`prvc${this.chatId}`, 'true')
+    localStorage.setItem(`prvc${this.chatId}`, 'false')
   }
 
   setPrivate() {
     this.isHidden = true
-    localStorage.setItem(`prvc${this.chatId}`, 'false')
+    localStorage.setItem(`prvc${this.chatId}`, 'true')
   }
 
   togglePrivacy() {
     if (this.isHidden) {
       this.setPublic()
-      console.log('Wird Öffentlich')
     }
     else {
       this.setPrivate()
-      console.log('Wird privat')
     }
 
     this.showSvgs()
